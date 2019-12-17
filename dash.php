@@ -2,11 +2,7 @@
 
 
 
-<<<<<<< HEAD
-echo '<h1>Esto es uan prueba que resulto exitosa!</h1>';
-=======
-echo 'Esto es uan prueba que resulto exitosa';
->>>>>>> develop
+echo '<h1>Esto es una prueba que resulto exitosa!</h1>';
 
 
 ?>
