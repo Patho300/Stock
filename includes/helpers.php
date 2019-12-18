@@ -15,7 +15,7 @@ class helper{
 }
 */
 
-
+/*
   public function validar($usuario,$password){
     
     $conexion = new conexion;
@@ -23,7 +23,7 @@ class helper{
     $result = mysqli_query($conexion->conectar(),$sql);    
     $resultfin = mysqli_num_rows($result);
     try{ ($row = mysqli_num_rows(resultfin)){
-       $_SESSION['usuario'] = $resultfin['usuario'];
+       $_SESSION['usuario'] = $resultfin['usuario']
     }else{
       return false; 
     }catch(Exception $e){
@@ -37,5 +37,5 @@ class helper{
   }
 
 
-  }
+  }*/
 }

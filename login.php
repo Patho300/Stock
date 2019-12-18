@@ -3,8 +3,6 @@
 require_once 'includes/cn.php';
 require_once 'includes/helpers.php';
 
-$help = new helper();
-
 
 if (isset($_POST)) 
 {
@@ -16,15 +14,15 @@ if (isset($_POST))
  
   $usuario  = $_POST['usuario'];
   $password = $_POST['password'];
-/*
+   
+
+
+
+
    $sql   = "SELECT usuario,contraseña FROM usuario where usuario = '{$usuario}' and contraseña ='{$password}'";
-   $login = mysqli_query($db, $sql);
-
-*/
-  
+   $login = mysqli_query($connection, $sql);
 
 
-/*
  if ($login && mysqli_num_rows($login) == 1){
   $usuario  = mysqli_fetch_assoc($login);
   header('Location: dash.php');
@@ -34,6 +32,11 @@ if (isset($_POST))
 
     echo "Error, las variables vienen vacias!";
   }
+
+
+  var_dump($connection);
+  exit();
+
 
  /*
  var_dump($_POST);
@@ -50,10 +53,7 @@ if (isset($_POST))
 
 */
 
-$help->validar($usuario,$password);
 
-var_dump($help);
-die();
 
 
 
