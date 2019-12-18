@@ -14,26 +14,21 @@ mysqli_query($db, "SET NAMES 'utf8'");
 
 
 class Conexion {
-
-    private $server ='localhost';
-    private $user='administrador';
-    private $password ='patovildo';
-    private $database ='stock';
+    
 
 
     public static function conectar(){
-     try{
-    $conection = mysqli_connect("server=$this->server user=$this->user password=$this->password database=$this->database");
-    return $conection;
+     
+      $link = new PDO("mysql:host=localhost;dbname=stock","administrador","patovildo");
+      $link->exec('set names utf8');
+      return $link;
     
-     }catch(Exception $e){
-
-        echo "No se puede conectar esta caga";
-        exit();
-     }
-
     }
 
 }
+
+
+
+    
 
 

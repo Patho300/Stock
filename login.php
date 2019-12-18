@@ -4,26 +4,21 @@ require_once 'includes/cn.php';
 require_once 'includes/helpers.php';
 
 
-if (isset($_POST)) 
-{
+if (isset($_POST)){
 
 	// Borrar error antiguo
 	/*if(isset($_SESSION['error_login'])){
 		session_unset($_SESSION['error_login']);
 	}*/
- 
+  $cn = new Conexion();
+  $cn ->conectar();
+
   $usuario  = $_POST['usuario'];
   $password = $_POST['password'];
-   
+  $sql   = "SELECT usuario,contraseña FROM usuario where usuario = '{$usuario}' and contraseña ='{$password}'";
+  $login = mysqli_query($cn,$sql);
 
-
-
-
-   $sql   = "SELECT usuario,contraseña FROM usuario where usuario = '{$usuario}' and contraseña ='{$password}'";
-   $login = mysqli_query($connection, $sql);
-
-
- if ($login && mysqli_num_rows($login) == 1){
+if ($login && mysqli_num_rows($login) == 1){
   $usuario  = mysqli_fetch_assoc($login);
   header('Location: dash.php');
      //comprueba la contraseña
@@ -34,8 +29,7 @@ if (isset($_POST))
   }
 
 
-  var_dump($connection);
-  exit();
+}
 
 
  /*
@@ -52,9 +46,4 @@ if (isset($_POST))
     }
 
 */
-
-
-
-
-
-
+  
