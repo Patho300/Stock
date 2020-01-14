@@ -33,7 +33,7 @@
 		<h3>Identificate</h3>
 		
 		<?php if(isset($_SESSION['error_login'])): ?>
-			<div class="alerta alerta-error">
+			<div class="alerta-error">
 				<?=$_SESSION['error_login'];?>
 			</div>
 		<?php endif; ?>

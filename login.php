@@ -1,37 +1,53 @@
 <?php
 // Iniciar la sesión y la conexión a bd
 require_once 'includes/cn.php';
-require_once 'includes/helpers.php';
 
-
-if (isset($_POST)){
-
+if (isset($_POST)) 
+{
 	// Borrar error antiguo
-	/*if(isset($_SESSION['error_login'])){
-		session_unset($_SESSION['error_login']);
-	}*/
-  $cn = new Conexion();
-  $cn ->conectar();
+	if(isset($_SESSION['cerrar_sesion'])){
+    session_unset();
+    session_destroy();
+  }
+  
+  if(isset($_SESSION['rol'])){
+    switch($_SESSION['rol']){
+      case 1:
+        header('Location: dash_admin.php');
+      break;
+      case 2:
+        header('Location: dash_usuario.php');
+      break;
+      default:
+    }
 
-  $usuario  = $_POST['usuario'];
-  $password = $_POST['password'];
-  $sql   = "SELECT usuario,contraseña FROM usuario where usuario = '{$usuario}' and contraseña ='{$password}'";
-  $login = mysqli_query($cn,$sql);
-
-if ($login && mysqli_num_rows($login) == 1){
-  $usuario  = mysqli_fetch_assoc($login);
-  header('Location: dash.php');
-     //comprueba la contraseña
-    //$verificar = password_verify($password, $usuario['password']);*/
-  }else{
-
-    echo "Error, las variables vienen vacias!";
   }
 
 
+  if(isset($_POST['usuario']) && isset($_POST['password'])){
+    
+    $usuario  = $_POST['usuario'];
+    $password = $_POST['password'];
+    $db = new Conexion;
+    $query = ('SELECT * FROM usuarios where usuario=:usuario AND password=:password');
+    $rg= $db->prepare($query);
+    $query->execute(['username' => $usuario, 'password' => $password]);
+    $row = $query->fetch(PDO::FETCH_NUM);
+    if($row == true){
+      echo "se encontro el match!";
+    }else{
+      echo "No se encontro naaa";
+    }
+  }
+
 }
+ 
+
+ 
 
 
+
+ 
  /*
  var_dump($_POST);
  var_dump($_SESSION);
@@ -46,4 +62,9 @@ if ($login && mysqli_num_rows($login) == 1){
     }
 
 */
-  
+
+
+
+
+
+
